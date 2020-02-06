@@ -8,32 +8,33 @@ import { ProductService } from './product.service';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit 
+{
   pageTitle = 'Product Detail';
   errorMessage = '';
   product: IProduct | undefined;
 
-  constructor(private route: ActivatedRoute,
-    private router: Router,
-    private productService: ProductService) {
-  }
+  constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) {  }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
     const param = this.route.snapshot.paramMap.get('id');
-    if (param) {
+    if (param) 
+    {
       const id = +param;
       this.getProduct(id);
     }
   }
 
-  getProduct(id: number) {
+  getProduct(id: number) 
+  {
     this.productService.getProduct(id).subscribe(
       product => this.product = product,
       error => this.errorMessage = <any>error);
   }
 
-  onBack(): void {
+  onBack(): void 
+  {
     this.router.navigate(['/products']);
   }
-
 }
